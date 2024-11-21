@@ -22,6 +22,7 @@
   
   .cell {
     background-color: white;
+    aspect-ratio: 1 / 1; 
   }
   
   /*Media Queries*/
