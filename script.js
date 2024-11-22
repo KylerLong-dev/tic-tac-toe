@@ -1,12 +1,13 @@
 
-function gameFlow () {
+(function gameFlow () {
 
     const game = {
         board: [
             ["", "", ""], 
             ["", "", ""], 
             ["", "", ""], 
-        ]
+        ], 
+        playerOne: true, 
     }
 
     function createPlayers (playerOne, playerTwo) {
@@ -21,12 +22,12 @@ function gameFlow () {
                         if (playerOne) {
                             game.board[rowIndex][colIndex] = "X";
                             playerOne = false; 
-                            changeDisplay();
+                            changeDisplay(cell);
                         }
                         else {
                             game.board[rowIndex][colIndex] = "O"; 
                             playerOne = true;
-                            changeDisplay();
+                            changeDisplay(cell);
                         }
                     }
                 })
@@ -34,23 +35,23 @@ function gameFlow () {
         })
     }
 
-    function changeDisplay () {
-        const cellDiv = document.querySelector(".cell")
-
+    function changeDisplay (cell) {
         if (playerOne) {
             const xIcon = document.createElement("p")
             xIcon.textContent = "X"; 
-            cellDiv.appendChild(xIcon);
+            cell.appendChild(xIcon);
         }
 
         else {
             const oIcon = document.createElement("p")
             oIcon.textContent = "O"; 
-            cellDiv.appendChild(oIcon);
+            cell.appendChild(oIcon);
         }
     }
 
-}
+    const players = createPlayers("Player 1", "Player 2");
+    playerMoves();      
 
+})();
 
 
