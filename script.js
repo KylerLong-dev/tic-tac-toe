@@ -1,57 +1,46 @@
 
-(function gameFlow () {
+const cells = document.querySelectorAll(".cell");
+const statusText = document.querySelector("statusText");
+const restartBtn = document.querySelector("restartBtn");
 
-    const game = {
-        board: [
-            ["", "", ""], 
-            ["", "", ""], 
-            ["", "", ""], 
-        ], 
-        playerOne: true, 
-    }
+let gameBoard = ["", "", "", "", "", "", "", "", ""];
+const winConditions = [
+    [0, 1, 2], 
+    [3, 4, 5], 
+    [6, 7, 8], 
+    [0, 3, 6], 
+    [1, 4, 7],
+    [2, 5, 8]
+];
 
-    function createPlayers (playerOne, playerTwo) {
-        return {playerOne, playerTwo}
-    }
+let currentPlayer = "X"; 
+let gameState = false; 
 
-    function playerMoves () {
-        game.board.forEach((row, rowIndex) => {
-            row.forEach((cell, colIndex) => {
-                cell.addEventListener("click", () => {
-                    if(cell=== "") {
-                        if (playerOne) {
-                            game.board[rowIndex][colIndex] = "X";
-                            playerOne = false; 
-                            changeDisplay(cell);
-                        }
-                        else {
-                            game.board[rowIndex][colIndex] = "O"; 
-                            playerOne = true;
-                            changeDisplay(cell);
-                        }
-                    }
-                })
-            })
-        })
-    }
+const startGame = function () {
+    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    statusText.textContent = `It's ${currentPlayer}'s turn`;
+    restartBtn.addEventListener("click", restartGame);
+    gameState = true; 
+}
 
-    function changeDisplay (cell) {
-        if (playerOne) {
-            const xIcon = document.createElement("p")
-            xIcon.textContent = "X"; 
-            cell.appendChild(xIcon);
-        }
+const cellClicked = function () {
+    
+}
 
-        else {
-            const oIcon = document.createElement("p")
-            oIcon.textContent = "O"; 
-            cell.appendChild(oIcon);
-        }
-    }
+const updateCell = function () {
 
-    const players = createPlayers("Player 1", "Player 2");
-    playerMoves();      
+}
 
-})();
+const switchPlayer = function () {
 
+}
 
+const checkWinner = function () {
+
+}
+
+const restartGame = function () {
+
+}
+
+startGame();
